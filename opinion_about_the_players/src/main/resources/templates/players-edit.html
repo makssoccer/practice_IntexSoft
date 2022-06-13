@@ -12,7 +12,7 @@
     <div th:each="element : ${player}" >
         <form  method="post" >
             <input type="text" th:value="${element.name_player}" name="name_player" placeholder="В ведите название статьи" class="form-control"><br>
-            <input type="text" th:value="${element.anons}" name="anons" placeholder="В ведите анонс статьи" class="form-control"><br>
+            <input type="text" th:value="${element.nickname}" name="nickname" placeholder="В ведите анонс статьи" class="form-control"><br>
             <textarea name="full_text"  placeholder="В ведите полный текст статьи" class="form-control" th:text="${element.full_text}" /><br>
 <!--            <label>Добавить фотографию</label>-->
 <!--            <div class="custom-file">-->

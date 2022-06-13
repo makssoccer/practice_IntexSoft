@@ -1,15 +1,30 @@
 package com.example.opinion_about_the_players.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "player")
 public class Player {
 
-
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Short age;
+    private String name_player, nickname, full_text;
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "club_id", nullable = false)
+//    private Club club;
+//
 
     public Short getAge() {
         return age;
@@ -19,14 +34,7 @@ public class Player {
         this.age = age;
     }
 
-    private String name_player, anons, full_text;
 //    private int views;
-
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-
-
-
 
     public String getName_player() {
         return name_player;
@@ -37,12 +45,12 @@ public class Player {
     }
 
 
-    public String getAnons() {
-        return anons;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setAnons(String anons) {
-        this.anons = anons;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /*public int getViews() {
@@ -73,7 +81,7 @@ public class Player {
     }
     public Player(String name_player, String anons, String full_text) {
         this.name_player = name_player;
-        this.anons = anons;
+        this.nickname = anons;
         this.full_text = full_text;
 
     }
