@@ -2,6 +2,7 @@ package com.example.opinion_about_the_players.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,6 +13,9 @@ public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    private List<Player> players;
+
     private String name_club;
 
     @Lob
@@ -40,9 +44,6 @@ public class Club {
     }
 
 
-//
-//    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private Set<Player> attachments = new HashSet<Player>();
 
 
 

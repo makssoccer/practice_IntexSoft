@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "player")
@@ -14,16 +15,30 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "club_id")
+    private Club club;
     private Short age;
-    private String name_player, nickname, full_text;
+    private String name_player;
+    private String nickname;
+    private String   full_text;
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "club_id", nullable = false)
-//    private Club club;
+
+
+
 //
 
     public Short getAge() {
@@ -79,10 +94,11 @@ public class Player {
 
     public Player() {
     }
-    public Player(String name_player, String anons, String full_text) {
+    public Player(String name_player, String nickname, String full_text) {
         this.name_player = name_player;
-        this.nickname = anons;
+        this.nickname = nickname;
         this.full_text = full_text;
+//        this.club = club;
 
     }
 }
