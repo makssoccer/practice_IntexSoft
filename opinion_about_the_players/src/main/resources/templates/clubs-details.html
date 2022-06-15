@@ -9,16 +9,10 @@
 <header th:insert="blocks/header :: header "></header>
 <div class="container mt-5">
 
-    <div th:each="element : ${player}" class=""alert alert-info mt-2>
-        <h1 th:text="${element.name_player}"></h1>
-        <p th:text="${element.full_text}"></p>
-<!--        <p th:text="${element.club}"></p>-->
+    <div th:each="element : ${club}" class=""alert alert-info mt-2>
+        <h1 th:text="${element.name_club}"></h1>
 
-
-
-        <!--<p><b>Просмотры:</b><span th:text="${element.views}"/></p>-->
-        <a th:href="'/players/' + ${element.id} + 'edit'" class="btn btn-warning">Редактировать</a><br><br>
-        <form th:action="'/players/' + ${element.id} + 'remove'" method="post">
+        <form th:action="'/clubs/' + ${element.id} + 'remove'" method="post">
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
     </div>

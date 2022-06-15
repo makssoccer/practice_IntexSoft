@@ -14,7 +14,13 @@
         <input type="text" name="name_player" placeholder="В ведите имя игрока" class="form-control"><br>
 <!--        <input type="text" name="name_club" placeholder="В ведите название клуба" class="form-control"><br>-->
 
-        <input type="text" name="name_club" placeholder="В ведите название клуба" class="form-control"><br>
+        <select name="club">
+            <option th:each="element : ${clubs}"
+                    th:value="${element.id}"
+                    th:text="${element.name_club}"></option>
+
+        </select>
+
 
         <input type="text"  name="nickname" placeholder="В ведите анонс статьи" class="form-control"><br>
 

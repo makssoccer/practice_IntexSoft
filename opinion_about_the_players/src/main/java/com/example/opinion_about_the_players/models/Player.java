@@ -2,7 +2,7 @@ package com.example.opinion_about_the_players.models;
 
 import lombok.Getter;
 import lombok.Setter;
-
+import com.example.opinion_about_the_players.models.Club;
 import javax.persistence.*;
 import java.util.Optional;
 
@@ -16,17 +16,12 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Club getClub() {
-        return club;
-    }
 
-    public void setClub(Club club) {
-        this.club = club;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "club_id")
     private Club club;
+
     private Short age;
     private String name_player;
     private String nickname;
@@ -38,9 +33,13 @@ public class Player {
 
 
 
+    public Club getClub() {
+        return club;
+    }
 
-//
-
+    public void setClub(Club club) {
+        this.club = club;
+    }
     public Short getAge() {
         return age;
     }
@@ -94,11 +93,12 @@ public class Player {
 
     public Player() {
     }
-    public Player(String name_player, String nickname, String full_text) {
+    public Player(String name_player, String nickname, String full_text,Club club) {
         this.name_player = name_player;
         this.nickname = nickname;
         this.full_text = full_text;
-//        this.club = club;
+        this.club = club;
 
     }
+
 }

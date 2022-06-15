@@ -14,7 +14,14 @@
             <input type="text" th:value="${element.name_player}" name="name_player" placeholder="В ведите название статьи" class="form-control"><br>
             <input type="text" th:value="${element.nickname}" name="nickname" placeholder="В ведите анонс статьи" class="form-control"><br>
             <textarea name="full_text"  placeholder="В ведите полный текст статьи" class="form-control" th:text="${element.full_text}" /><br>
-<!--            <label>Добавить фотографию</label>-->
+            <select name="club">
+                <option th:each="element : ${clubs}"
+                        th:value="${element.id}"
+                        th:text="${element.name_club}">Wireframe</option>
+
+            </select>
+
+            <!--            <label>Добавить фотографию</label>-->
 <!--            <div class="custom-file">-->
 <!--                <input type="file" name="file" class="custom-file-input" id="customFile">-->
 <!--                <label class="custom-file-label" for="customFile"></label><br>-->

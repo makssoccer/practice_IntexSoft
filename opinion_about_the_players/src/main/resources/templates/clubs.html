@@ -11,10 +11,13 @@
     <h1>Клубы</h1>
     <div th:each="element : ${clubs}" class=""alert alert-info mt-2>
         <h3 th:text="${element.name_club}"></h3>
-
+        <a th:href="'/clubs/' + ${element.id}" class="btn btn-warning">Детальнее</a>
 <!--        <a th:href="'/players/' + ${element.id}" class="btn btn-warning">Детальнее</a>-->
     </div>
+
 </div>
+
+
 <header th:insert="blocks/footer :: footer "></header>
 
 
