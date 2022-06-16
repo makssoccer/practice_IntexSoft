@@ -1,7 +1,6 @@
 package com.example.opinion_about_the_players.conrtrollers;
 
 import com.example.opinion_about_the_players.models.Club;
-import com.example.opinion_about_the_players.models.Player;
 import com.example.opinion_about_the_players.repository.ClubRepository;
 import com.example.opinion_about_the_players.repository.PlayerRepository;
 import com.example.opinion_about_the_players.service.ClubServise;
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Controller
 public class PageController {
@@ -75,8 +71,7 @@ public class PageController {
     ////Удаление Игрока
     @PostMapping("/players/{id}remove")
     public String playerPostDelete(@PathVariable(value="id") long id,Model model) {
-        Player player = playerRepository.findById(id).orElseThrow();
-        playerRepository.delete(player);
+        playerServise.deletePlayerOnDB(id);
         return "redirect:/players";
     }
 
@@ -95,8 +90,7 @@ public class PageController {
     ////Добавление клуба
     @PostMapping("/clubs/add")
     public String clubPostAdd(@RequestParam String name_club,  Model model) {
-        Club club = new Club (name_club);
-        clubRepository.save(club);
+        clubServise.saveClubToDB(name_club);
         return "redirect:/clubs";
     }
     @GetMapping("/clubs/{id}")
@@ -105,12 +99,12 @@ public class PageController {
             return "redirect:/clubs";
         }
         clubServise.getInfoByClubs(id,model);
-        return "clubs-details";
+//        playerServise.getNamePlayersInClub(id, model);
+      return "clubs-details";
     }
     @PostMapping("/clubs/{id}remove")
     public String clubPostDelete(@PathVariable(value="id") long id,Model model) {
-        Club club = clubRepository.findById(id).orElseThrow();
-        clubRepository.delete(club);
+        clubServise.deleteClubOnDB(id);
         return "redirect:/clubs";
     }
 

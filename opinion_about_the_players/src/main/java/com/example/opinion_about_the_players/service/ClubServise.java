@@ -19,10 +19,20 @@ public class ClubServise {
         Iterable<Club> clubs = clubRepository.findAll();
         return model.addAttribute("clubs",clubs);
     };
+    public  void saveClubToDB(String name_club)
+    {
+        Club Club =new Club();
+        Club.setName_club(name_club);
+        clubRepository.save(Club);
+    }
     public Model getInfoByClubs(long id, Model model){
         Optional<Club> club = clubRepository.findById(id);
         ArrayList<Club> resol= new ArrayList<>();
         club.ifPresent(resol::add);
         return model.addAttribute("club",resol);
     }
+
+    public  void deleteClubOnDB(long id)
+    { Club club = clubRepository.findById(id).orElseThrow();
+        clubRepository.delete(club);}
 }

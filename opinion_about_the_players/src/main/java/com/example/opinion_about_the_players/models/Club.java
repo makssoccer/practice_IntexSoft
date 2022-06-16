@@ -13,18 +13,13 @@ public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "club", fetch = FetchType.EAGER)
     private List<Player> players;
 
     private String name_club;
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-
-
-
-
-
 
 
     public Long getId() {
@@ -43,17 +38,9 @@ public class Club {
         this.name_club = name_club;
     }
 
-
-
-
-
-
-
     public Club() {
     }
     public Club(String name_club) {
         this.name_club = name_club;
-
-
     }
 }

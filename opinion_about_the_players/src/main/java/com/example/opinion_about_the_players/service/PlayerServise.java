@@ -16,6 +16,7 @@ public class PlayerServise {
     @Autowired
     private PlayerRepository playerRepository;
 
+    /////заполняем
     public Model getPlayers(Model model){
         Iterable<Player> players = playerRepository.findAll();
         return model.addAttribute("players",players);
@@ -37,6 +38,12 @@ public class PlayerServise {
         player.ifPresent(res::add);
         return model.addAttribute("player",res);
     }
+//    public Model getNamePlayersInClub(long club_id, Model model){
+//
+//        Optional<Player> players = playerRepository.findByclub_id(club_id);
+//        return model.addAttribute("players",players);
+//    }
+
     public  void editPlayerToDB(long id,String name_player, String nickname, String full_text, Club club)
     {
         Player player= playerRepository.findById(id).orElseThrow();
@@ -46,4 +53,8 @@ public class PlayerServise {
         player.setClub(club);
         playerRepository.save(player);
     }
+    public  void deletePlayerOnDB(long id)
+    { Player player = playerRepository.findById(id).orElseThrow();
+        playerRepository.delete(player);}
+
 }

@@ -18,7 +18,7 @@ public class Player {
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "club_id")
     private Club club;
 
@@ -29,8 +29,6 @@ public class Player {
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-
-
 
 
     public Club getClub() {
