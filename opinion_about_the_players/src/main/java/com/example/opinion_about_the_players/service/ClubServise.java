@@ -1,6 +1,7 @@
 package com.example.opinion_about_the_players.service;
 
 import com.example.opinion_about_the_players.models.Club;
+import com.example.opinion_about_the_players.models.League;
 import com.example.opinion_about_the_players.models.Player;
 import com.example.opinion_about_the_players.repository.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,11 +21,12 @@ public class ClubServise {
         Iterable<Club> clubs = clubRepository.findAll();
         return model.addAttribute("clubs",clubs);
     };
-    public  void saveClubToDB(String name_club)
+    public  void saveClubToDB(String name_club, List<League> league)
     {
-        Club Club =new Club();
-        Club.setName_club(name_club);
-        clubRepository.save(Club);
+        Club club =new Club();
+        club.setName_club(name_club);
+        club.setLeague(league);
+        clubRepository.save(club);
     }
     public Model getInfoByClubs(long id, Model model){
         Optional<Club> club = clubRepository.findById(id);

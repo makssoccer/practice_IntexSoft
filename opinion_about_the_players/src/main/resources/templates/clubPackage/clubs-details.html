@@ -15,7 +15,12 @@
 <!--        <div th:each="element : ${players}" class=""alert alert-info mt-2>-->
 <!--            <h3 th:text="${element.name_player}"></h3>-->
 <!--        </div>-->
-    </div>
+        <select name="league">
+            <option th:each="element : ${leagues}"
+                    th:value="${element.id}"
+                    th:text="${element.name_league}"></option>
+
+        </select>
         <form th:action="'/clubs/' + ${element.id} + 'remove'" method="post">
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
