@@ -27,9 +27,6 @@ public class Player {
     private String nickname;
     private String   full_text;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-
 
     public Club getClub() {
         return club;

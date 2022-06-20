@@ -11,19 +11,19 @@
     <h1>Добавление Клуба</h1>
     <form action="/clubs/add" method="post">
         <input type="text" name="name_club" placeholder="В ведите название клуба" class="form-control"><br>
-        <select name="league">
-            <option th:each="element : ${leagues}"
+        <select name="tournament">
+            <option th:each="element : ${tournaments}"
                     th:value="${element.id}"
-                    th:text="${element.name_league}"></option>
+                    th:text="${element.nameTournament}"></option>
 
         </select>
         <button type="submit" class="btn btn-success">Добавить Клуб</button>
 
 
 
-    <h1>Добавление Лиги</h1>
-        <input type="text" name="name_league" placeholder="В ведите название лиги" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Добавить Лигу</button>
+    <h1>Добавление Турнира</h1>
+        <input type="text" name="nameTournament" placeholder="В ведите название турнира" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Добавить Турнир</button>
     </form>
 </div>
 <header th:insert="blocks/footer :: footer "></header>

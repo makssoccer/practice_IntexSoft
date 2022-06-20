@@ -15,13 +15,22 @@
 <!--        <div th:each="element : ${players}" class=""alert alert-info mt-2>-->
 <!--            <h3 th:text="${element.name_player}"></h3>-->
 <!--        </div>-->
-        <select name="league">
-            <option th:each="element : ${leagues}"
-                    th:value="${element.id}"
-                    th:text="${element.name_league}"></option>
-
-        </select>
+<!--        <select name="tournament">-->
+<!--            <option th:each="element : ${tournaments}"-->
+<!--                    th:value="${element.id}"-->
+<!--                    th:text="${element.nameTournament}"></option>-->
+        <form  method="post" >
+            <input type="text" th:value="${element.name_club}" name="name_club" placeholder="В ведите название статьи" class="form-control"><br>
+            <select name="tournament">
+                <option th:each="element : ${tournaments}"
+                        th:value="${element.id}"
+                        th:text="${element.nameTournament}"></option>
+            </select>
+        <button type="submit" class="btn btn-success">Обновить</button>
+        </form>
+<!--        </select>-->
         <form th:action="'/clubs/' + ${element.id} + 'remove'" method="post">
+
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
     </div>

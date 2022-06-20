@@ -1,9 +1,7 @@
 package com.example.opinion_about_the_players.models;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "club")
@@ -18,14 +16,15 @@ public class Club {
 
 
 
-    @ManyToMany(mappedBy="club", fetch = FetchType.LAZY)
-    private List<League> league;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tournament_club",
+            joinColumns = @JoinColumn(name = "club_id"),
+            inverseJoinColumns = @JoinColumn(name = "tournament_id"))
+    private List<Tournament> tournament;
+
 
     private String name_club;
-
-
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
 
     public List<Player> getPlayers() {
         return players;
@@ -35,12 +34,12 @@ public class Club {
     }
 
 
-    public List<League> getLeague() {
-        return league;
+    public List<Tournament> getTournament() {
+        return tournament;
     }
 
-    public void setLeague(List<League> league) {
-        this.league = league;
+    public void setTournament(List<Tournament> tournament) {
+        this.tournament = tournament;
     }
     public Long getId() {
         return id;

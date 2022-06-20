@@ -10,10 +10,9 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name_country;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
+
+    private String name_country;
 
     public String getName_country() {
         return name_country;
