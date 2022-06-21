@@ -1,7 +1,6 @@
 package com.example.opinion_about_the_players.service;
 
 import com.example.opinion_about_the_players.models.Club;
-import com.example.opinion_about_the_players.models.Player;
 import com.example.opinion_about_the_players.models.Tournament;
 import com.example.opinion_about_the_players.repository.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class ClubServise {
     {
         Club club= clubRepository.findById(id).orElseThrow();
         club.setName_club(name_club);
-        club.setTournament(tournament);
+        club.setTournaments(tournament);
         clubRepository.save(club);
     }
     public  void deleteClubOnDB(long id)

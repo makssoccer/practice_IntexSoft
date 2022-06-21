@@ -12,23 +12,16 @@
     <div th:each="element : ${club}" class=""alert alert-info mt-2>
         <h1 th:text="${element.name_club}"></h1>
 
-<!--        <div th:each="element : ${players}" class=""alert alert-info mt-2>-->
-<!--            <h3 th:text="${element.name_player}"></h3>-->
-<!--        </div>-->
-<!--        <select name="tournament">-->
-<!--            <option th:each="element : ${tournaments}"-->
-<!--                    th:value="${element.id}"-->
-<!--                    th:text="${element.nameTournament}"></option>-->
-        <form  method="post" >
-            <input type="text" th:value="${element.name_club}" name="name_club" placeholder="В ведите название статьи" class="form-control"><br>
-            <select name="tournament">
-                <option th:each="element : ${tournaments}"
-                        th:value="${element.id}"
-                        th:text="${element.nameTournament}"></option>
-            </select>
-        <button type="submit" class="btn btn-success">Обновить</button>
-        </form>
-<!--        </select>-->
+
+<div th:each="el : ${element.getTournament()}">
+   <h3 th:text="${el.nameTournament}">VALUE</h3>
+</div>
+
+
+        <div th:each="el : ${element.getPlayers()}">
+            <h3 th:text="${el.name_player}">VALUE</h3>
+        </div>
+        <a th:href="'/clubs/' + ${element.id} + 'edit'" class="btn btn-warning">Редактировать</a><br><br>
         <form th:action="'/clubs/' + ${element.id} + 'remove'" method="post">
 
             <button class="btn btn-warning" type="submit">Удалить</button>

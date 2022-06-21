@@ -41,6 +41,9 @@ public class Club {
     public void setTournament(List<Tournament> tournament) {
         this.tournament = tournament;
     }
+    public void setTournaments(List<Tournament> tournaments) {
+        tournament.addAll(tournaments) ;
+    }
     public Long getId() {
         return id;
     }

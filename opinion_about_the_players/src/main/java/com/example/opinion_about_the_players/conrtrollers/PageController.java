@@ -61,6 +61,7 @@ public class PageController {
         }
         tournamentServise.getTournaments(model);
         clubServise.getInfoByClubs(id,model);
+
 //        playerServise.getNamePlayersInClub(id, model);
       return "clubPackage/clubs-details";
     }
@@ -71,7 +72,21 @@ public class PageController {
         }
         clubServise.editClubToDB(id,name_club, tournament);
 //        playerServise.getNamePlayersInClub(id, model);
-        return "clubPackage/clubs-details";
+        return "redirect:/clubs-details";
+    }
+
+    @GetMapping("/clubs/{id}edit")
+    public String clubEdit(@PathVariable(value="id") long id,Model model){
+        if(!clubRepository.existsById(id)){
+            return "redirect:/clubs";}
+        tournamentServise.getTournaments(model);
+        clubServise.getInfoByClubs(id, model);
+        return "clubPackage/clubs-edit";
+    }
+    @PostMapping("/clubs/{id}edit")
+    public String clubPostUbdate(@PathVariable(value = "id") long id,@RequestParam String name_club, @RequestParam List<Tournament> tournament,Model model){
+        clubServise.editClubToDB(id,name_club,tournament);
+        return "redirect:/clubs";
     }
     @PostMapping("/clubs/{id}remove")
     public String clubPostDelete(@PathVariable(value="id") long id,Model model) {
