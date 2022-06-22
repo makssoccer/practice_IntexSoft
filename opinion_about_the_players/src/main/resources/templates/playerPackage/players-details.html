@@ -10,13 +10,19 @@
 <div class="container mt-5">
 
     <div th:each="element : ${player}" class=""alert alert-info mt-2>
-        <h1 th:text="${element.name_player}"></h1>
-        <p th:text="${element.full_text}"></p>
-<!--        <p th:text="${element.club}"></p>-->
+        <h1 th:text="${element.namePlayer}"></h1>
+        <h3>Country</h3>
+        <div th:each="el : ${element.getCountry()}">
+            <p th:text="${el.nameCountry}">VALUE</p>
+        </div><br>
+        <h3>Club</h3>
+        <div th:each="el : ${element.getClub()}">
+            <p th:text="${el.nameClub}">VALUE</p>
+        </div><br>
+        <p th:text="${element.fullText}"></p>
 
 
 
-        <!--<p><b>Просмотры:</b><span th:text="${element.views}"/></p>-->
         <a th:href="'/players/' + ${element.id} + 'edit'" class="btn btn-warning">Редактировать</a><br><br>
         <form th:action="'/players/' + ${element.id} + 'remove'" method="post">
             <button class="btn btn-warning" type="submit">Удалить</button>

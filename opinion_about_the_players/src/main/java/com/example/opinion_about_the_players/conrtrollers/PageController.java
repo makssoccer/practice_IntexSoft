@@ -1,9 +1,11 @@
 package com.example.opinion_about_the_players.conrtrollers;
 
+import com.example.opinion_about_the_players.models.Country;
 import com.example.opinion_about_the_players.models.Tournament;
 import com.example.opinion_about_the_players.repository.ClubRepository;
 import com.example.opinion_about_the_players.repository.TournamentRepository;
 import com.example.opinion_about_the_players.service.ClubServise;
+import com.example.opinion_about_the_players.service.CountryServise;
 import com.example.opinion_about_the_players.service.TournamentServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,8 @@ public class PageController {
     private TournamentRepository tournamentRepository;
     @Autowired
     private TournamentServise tournamentServise;
+    @Autowired
+    private CountryServise countryServise;
 
 
 
@@ -35,25 +39,21 @@ public class PageController {
         clubServise.getClubs(model);
         return "clubPackage/clubs";
     }
-//////
+//////получаем все турниры
     @GetMapping("/clubs/add")
     public String clubAdd( Model model){
         tournamentServise.getTournaments(model);
         return "clubPackage/clubs-add";
     }
-    ////Добавление клуба
+    ////Добавление клуба, лиги и страну
     @PostMapping("/clubs/add")
-    public String clubPostAdd(@RequestParam String name_club, @RequestParam List<Tournament> tournament, @RequestParam String nameTournament, Model model) {
-        if (nameTournament != "") {
-            tournamentServise.saveTournamentToDB(nameTournament);
-        }
-
-        if (name_club != "") {
-        clubServise.saveClubToDB(name_club, tournament);
-        }
+    public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament,@RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
+        tournamentServise.saveTournamentToDB(nameTournament);
+        countryServise.saveCountryToDB(nameCountry);
+        clubServise.saveClubToDB(nameClub, tournament);
             return "redirect:/clubs";
     }
-
+//////////////Получаем информацию
     @GetMapping("/clubs/{id}")
     public String clubDetails(@PathVariable(value="id") long id, Model model){
         if(!clubRepository.existsById(id)){
@@ -61,16 +61,14 @@ public class PageController {
         }
         tournamentServise.getTournaments(model);
         clubServise.getInfoByClubs(id,model);
-
-//        playerServise.getNamePlayersInClub(id, model);
       return "clubPackage/clubs-details";
     }
     @PostMapping("/clubs/{id}")
-    public String clubPostDetails(@PathVariable(value="id") long id,@RequestParam String name_club, @RequestParam List<Tournament> tournament, Model model){
+    public String clubPostDetails(@PathVariable(value="id") long id, @RequestParam String nameClub, @RequestParam List<Tournament> tournament, Model model){
         if(!clubRepository.existsById(id)){
             return "redirect:/clubs";
         }
-        clubServise.editClubToDB(id,name_club, tournament);
+        clubServise.editClubToDB(id, nameClub, tournament);
 //        playerServise.getNamePlayersInClub(id, model);
         return "redirect:/clubs-details";
     }
@@ -84,8 +82,8 @@ public class PageController {
         return "clubPackage/clubs-edit";
     }
     @PostMapping("/clubs/{id}edit")
-    public String clubPostUbdate(@PathVariable(value = "id") long id,@RequestParam String name_club, @RequestParam List<Tournament> tournament,Model model){
-        clubServise.editClubToDB(id,name_club,tournament);
+    public String clubPostUbdate(@PathVariable(value = "id") long id, @RequestParam String nameClub, @RequestParam List<Tournament> tournament, Model model){
+        clubServise.editClubToDB(id, nameClub,tournament);
         return "redirect:/clubs";
     }
     @PostMapping("/clubs/{id}remove")

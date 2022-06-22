@@ -24,7 +24,7 @@ public class Club {
     private List<Tournament> tournament;
 
 
-    private String name_club;
+    private String nameClub;
 
     public List<Player> getPlayers() {
         return players;
@@ -50,16 +50,16 @@ public class Club {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getName_club() {
-        return name_club;
+    public String getNameClub() {
+        return nameClub;
     }
-    public void setName_club(String name_club) {
-        this.name_club = name_club;
+    public void setNameClub(String nameClub) {
+        this.nameClub = nameClub;
     }
 
     public Club() {
     }
-    public Club(String name_club) {
-        this.name_club = name_club;
+    public Club(String nameClub) {
+        this.nameClub = nameClub;
     }
 }

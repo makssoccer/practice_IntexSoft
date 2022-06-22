@@ -18,11 +18,14 @@ public class TournamentServise {
     public Model getTournaments(Model model){
         Iterable<Tournament> tournaments = tournamentRepository.findAll();
         return model.addAttribute("tournaments",tournaments);
-    };
+    }
     public  void saveTournamentToDB(String nameTournament)
     {
-        Tournament tournament =new Tournament();
-        tournament.setNameTournament(nameTournament);
-        tournamentRepository.save(tournament);
+        if (!nameTournament.equals("")) {
+            Tournament tournament =new Tournament();
+            tournament.setNameTournament(nameTournament);
+            tournamentRepository.save(tournament);
+        }
+
     }
 }

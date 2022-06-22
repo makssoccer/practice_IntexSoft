@@ -11,16 +11,22 @@
     <h1>Редактирование статьи</h1>
     <div th:each="element : ${player}" >
         <form  method="post" >
-            <input type="text" th:value="${element.name_player}" name="name_player" placeholder="В ведите название статьи" class="form-control"><br>
-            <input type="text" th:value="${element.nickname}" name="nickname" placeholder="В ведите анонс статьи" class="form-control"><br>
-            <textarea name="full_text"  placeholder="В ведите полный текст статьи" class="form-control" th:text="${element.full_text}" /><br>
+            <input type="text" th:value="${element.namePlayer}" name="namePlayer" placeholder="Введите название статьи" class="form-control"><br>
+            <input type="text" th:value="${element.nickname}" name="nickname" placeholder="В ведите прозвище" class="form-control"><br>
+            <textarea name="fullText"  placeholder="Введите полный текст статьи" class="form-control" th:text="${element.fullText}" /><br>
             <select name="club">
                 <option th:each="element : ${clubs}"
                         th:value="${element.id}"
-                        th:text="${element.name_club}">Wireframe</option>
+                        th:text="${element.nameClub}">Wireframe</option>
 
             </select>
 
+            <h3>Выберите страну</h3>
+            <select name="country">
+                <option th:each="element : ${countries}"
+                        th:value="${element.id}"
+                        th:text="${element.nameCountry}"></option>
+            </select>
             <!--            <label>Добавить фотографию</label>-->
 <!--            <div class="custom-file">-->
 <!--                <input type="file" name="file" class="custom-file-input" id="customFile">-->

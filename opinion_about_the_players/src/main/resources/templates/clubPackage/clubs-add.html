@@ -10,20 +10,23 @@
 <div class="container mt-5 mb-5">
     <h1>Добавление Клуба</h1>
     <form action="/clubs/add" method="post">
-        <input type="text" name="name_club" placeholder="В ведите название клуба" class="form-control"><br>
+        <input type="text" name="nameClub" placeholder="Введите название клуба" class="form-control"><br>
         <select name="tournament">
             <option th:each="element : ${tournaments}"
                     th:value="${element.id}"
                     th:text="${element.nameTournament}"></option>
-
-        </select>
-        <button type="submit" class="btn btn-success">Добавить Клуб</button>
+        </select><br><br>
+        <button type="submit" class="btn btn-success">Добавить Клуб</button><br><br>
 
 
 
     <h1>Добавление Турнира</h1>
-        <input type="text" name="nameTournament" placeholder="В ведите название турнира" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Добавить Турнир</button>
+        <input type="text" name="nameTournament" placeholder="Введите название турнира" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Добавить Турнир</button><br><br>
+
+        <h1>Добавление Страны</h1>
+        <input type="text" name="nameCountry" placeholder="Введите название страну" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Добавить Страну</button>
     </form>
 </div>
 <header th:insert="blocks/footer :: footer "></header>

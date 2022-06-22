@@ -19,13 +19,15 @@ public class ClubServise {
     public Model getClubs(Model model){
         Iterable<Club> clubs = clubRepository.findAll();
         return model.addAttribute("clubs",clubs);
-    };
-    public  void saveClubToDB(String name_club, List<Tournament> tournament)
+    }
+    public  void saveClubToDB(String nameClub, List<Tournament> tournament)
     {
+        if (!nameClub.equals("")) {
         Club club =new Club();
-        club.setName_club(name_club);
+        club.setNameClub(nameClub);
         club.setTournament(tournament);
         clubRepository.save(club);
+        }
     }
     public Model getInfoByClubs(long id, Model model){
         Optional<Club> club = clubRepository.findById(id);
@@ -33,10 +35,10 @@ public class ClubServise {
         club.ifPresent(resol::add);
         return model.addAttribute("club",resol);
     }
-    public  void editClubToDB(long id,String name_club, List<Tournament> tournament)
+    public  void editClubToDB(long id,String nameClub, List<Tournament> tournament)
     {
         Club club= clubRepository.findById(id).orElseThrow();
-        club.setName_club(name_club);
+        club.setNameClub(nameClub);
         club.setTournaments(tournament);
         clubRepository.save(club);
     }

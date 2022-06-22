@@ -9,12 +9,12 @@
 <header th:insert="blocks/header :: header "></header>
 <div class="container mt-5">
   <h1>Футболисты</h1>
-  <div th:each="element : ${players}" class=""alert alert-info mt-2>
-    <h3 th:text="${element.name_player}"></h3>
+  <div th:each="element : ${players}" class=""alert alert-info mt-2><br>
+
+    <h3 th:text="${element.namePlayer}"></h3>
     <p th:text="${element.nickname}"></p>
-<!--    <p th:text="${element.club_id}"></p>-->
-    <!--    <p align="center"> <img th:src="*{'data:image/jpg;png;jpeg;base64,'+{element.image}}" style="width: 200px;height: 200px"></p>-->
     <a th:href="'/players/' + ${element.id}" class="btn btn-warning">Детальнее</a>
+
   </div>
 </div>
 <header th:insert="blocks/footer :: footer "></header>

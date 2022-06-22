@@ -1,6 +1,7 @@
 package com.example.opinion_about_the_players.service;
 
 import com.example.opinion_about_the_players.models.Club;
+import com.example.opinion_about_the_players.models.Country;
 import com.example.opinion_about_the_players.models.Player;
 import com.example.opinion_about_the_players.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,14 @@ public class PlayerServise {
         return model.addAttribute("players",players);
     };
 
-    public  void savePlayerToDB(String name_player, String nickname, String full_text, Club club)
+    public  void savePlayerToDB(String namePlayer, String nickname, String fullText, Club club, Country country)
     {
         Player player =new Player();
-        player.setName_player(name_player);
+        player.setNamePlayer(namePlayer);
         player.setNickname(nickname);
-        player.setFull_text(full_text);
+        player.setFullText(fullText);
         player.setClub(club);
+        player.setCountry(country);
         playerRepository.save(player);
     }
     public Model getInfoByPlayers(long id, Model model){
@@ -44,13 +46,14 @@ public class PlayerServise {
 //        return model.addAttribute("players",players);
 //    }
 
-    public  void editPlayerToDB(long id,String name_player, String nickname, String full_text, Club club)
+    public  void editPlayerToDB(long id, String namePlayer, String nickname, String fullText, Club club, Country country)
     {
         Player player= playerRepository.findById(id).orElseThrow();
-        player.setName_player(name_player);
+        player.setNamePlayer(namePlayer);
         player.setNickname(nickname);
-        player.setFull_text(full_text);
+        player.setFullText(fullText);
         player.setClub(club);
+        player.setCountry(country);
         playerRepository.save(player);
     }
     public  void deletePlayerOnDB(long id)

@@ -2,9 +2,8 @@ package com.example.opinion_about_the_players.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import com.example.opinion_about_the_players.models.Club;
+
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Table(name = "player")
@@ -17,17 +16,29 @@ public class Player {
     private Long id;
 
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "club_id")
     private Club club;
 
     private Short age;
-    private String name_player;
+    private String namePlayer;
     private String nickname;
-    private String   full_text;
+    private String fullText;
 
 
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
     public Club getClub() {
         return club;
     }
@@ -45,12 +56,12 @@ public class Player {
 
 //    private int views;
 
-    public String getName_player() {
-        return name_player;
+    public String getNamePlayer() {
+        return namePlayer;
     }
 
-    public void setName_player(String name_player) {
-        this.name_player = name_player;
+    public void setNamePlayer(String namePlayer) {
+        this.namePlayer = namePlayer;
     }
 
 
@@ -70,12 +81,12 @@ public class Player {
         this.views = views;
     }*/
 
-    public String getFull_text() {
-        return full_text;
+    public String getFullText() {
+        return fullText;
     }
 
-    public void setFull_text(String full_text) {
-        this.full_text = full_text;
+    public void setFullText(String full_text) {
+        this.fullText = full_text;
     }
 
     public Long getId() {
@@ -88,12 +99,12 @@ public class Player {
 
     public Player() {
     }
-    public Player(String name_player, String nickname, String full_text,Club club) {
-        this.name_player = name_player;
+    public Player(String namePlayer, String nickname, String fullText, Club club,Country country) {
+        this.namePlayer = namePlayer;
         this.nickname = nickname;
-        this.full_text = full_text;
+        this.fullText = fullText;
         this.club = club;
-
+        this.country=country;
     }
 
 }
