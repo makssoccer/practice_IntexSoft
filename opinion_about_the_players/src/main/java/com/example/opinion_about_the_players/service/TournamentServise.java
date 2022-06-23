@@ -1,6 +1,7 @@
 package com.example.opinion_about_the_players.service;
 
 import com.example.opinion_about_the_players.models.Club;
+import com.example.opinion_about_the_players.models.Country;
 import com.example.opinion_about_the_players.models.Tournament;
 import com.example.opinion_about_the_players.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,11 +21,12 @@ public class TournamentServise {
         Iterable<Tournament> tournaments = tournamentRepository.findAll();
         return model.addAttribute("tournaments",tournaments);
     }
-    public  void saveTournamentToDB(String nameTournament)
+    public  void saveTournamentToDB(String nameTournament, List<Country> countries)
     {
         if (!nameTournament.equals("")) {
             Tournament tournament =new Tournament();
             tournament.setNameTournament(nameTournament);
+            tournament.setCountry(countries);
             tournamentRepository.save(tournament);
         }
 

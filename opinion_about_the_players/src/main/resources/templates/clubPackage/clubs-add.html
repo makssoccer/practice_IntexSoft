@@ -8,8 +8,11 @@
 <body>
 <header th:insert="blocks/header :: header "></header>
 <div class="container mt-5 mb-5">
-    <h1>Добавление Клуба</h1>
+
+
     <form action="/clubs/add" method="post">
+
+        <h1>Добавление Клуба</h1>
         <input type="text" name="nameClub" placeholder="Введите название клуба" class="form-control"><br>
         <select name="tournament">
             <option th:each="element : ${tournaments}"
@@ -19,10 +22,15 @@
         <button type="submit" class="btn btn-success">Добавить Клуб</button><br><br>
 
 
-
     <h1>Добавление Турнира</h1>
         <input type="text" name="nameTournament" placeholder="Введите название турнира" class="form-control"><br>
+        <select name="country">
+            <option th:each="element : ${countries}"
+                    th:value="${element.id}"
+                    th:text="${element.nameCountry}"></option>
+        </select><br><br>
         <button type="submit" class="btn btn-success">Добавить Турнир</button><br><br>
+
 
         <h1>Добавление Страны</h1>
         <input type="text" name="nameCountry" placeholder="Введите название страну" class="form-control"><br>

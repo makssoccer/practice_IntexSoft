@@ -43,12 +43,13 @@ public class PageController {
     @GetMapping("/clubs/add")
     public String clubAdd( Model model){
         tournamentServise.getTournaments(model);
+        countryServise.getCountries(model);
         return "clubPackage/clubs-add";
     }
     ////Добавление клуба, лиги и страну
     @PostMapping("/clubs/add")
-    public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament,@RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
-        tournamentServise.saveTournamentToDB(nameTournament);
+    public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament, @RequestParam List<Country> country, @RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
+        tournamentServise.saveTournamentToDB(nameTournament,country);
         countryServise.saveCountryToDB(nameCountry);
         clubServise.saveClubToDB(nameClub, tournament);
             return "redirect:/clubs";

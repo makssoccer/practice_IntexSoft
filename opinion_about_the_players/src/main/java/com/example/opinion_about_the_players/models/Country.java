@@ -14,6 +14,17 @@ public class Country {
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private List<Player> players;
 
+    @ManyToMany(mappedBy="country", fetch = FetchType.LAZY)
+    private List<Tournament> tournament;
+
+    public List<Tournament> getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(List<Tournament> tournament) {
+        this.tournament = tournament;
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
