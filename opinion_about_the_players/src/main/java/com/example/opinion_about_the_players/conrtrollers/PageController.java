@@ -8,6 +8,7 @@ import com.example.opinion_about_the_players.service.ClubServise;
 import com.example.opinion_about_the_players.service.CountryServise;
 import com.example.opinion_about_the_players.service.TournamentServise;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +48,7 @@ public class PageController {
         return "clubPackage/clubs-add";
     }
     ////Добавление клуба, лиги и страну
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/clubs/add")
     public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament, @RequestParam List<Country> country, @RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
         tournamentServise.saveTournamentToDB(nameTournament,country);

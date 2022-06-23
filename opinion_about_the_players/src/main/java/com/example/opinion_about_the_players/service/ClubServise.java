@@ -31,6 +31,7 @@ public class ClubServise {
     }
     public Model getInfoByClubs(long id, Model model){
         Optional<Club> club = clubRepository.findById(id);
+//        Club club1 = clubRepository.findById(id);
         ArrayList<Club> resol= new ArrayList<>();
         club.ifPresent(resol::add);
         return model.addAttribute("club",resol);
