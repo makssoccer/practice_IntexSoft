@@ -2,11 +2,13 @@ package com.example.opinion_about_the_players.conrtrollers;
 
 import com.example.opinion_about_the_players.models.Club;
 import com.example.opinion_about_the_players.models.Country;
-import com.example.opinion_about_the_players.repository.ClubRepository;
+import com.example.opinion_about_the_players.models.Player;
+import com.example.opinion_about_the_players.models.Review;
 import com.example.opinion_about_the_players.repository.PlayerRepository;
 import com.example.opinion_about_the_players.service.ClubServise;
 import com.example.opinion_about_the_players.service.CountryServise;
 import com.example.opinion_about_the_players.service.PlayerServise;
+import com.example.opinion_about_the_players.service.ReviewServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +27,15 @@ public class PlayerController {
     private ClubServise clubServise;
     @Autowired
     private CountryServise countryServise;
+    @Autowired
+    private ReviewServise reviewServise;
 
     @GetMapping("/players")
     public String playerMain(Model model){
         playerServise.getPlayers(model);
         return "playerPackage/players";
     }
+
 
     @GetMapping("/players/add")
     public String playerAdd( Model model){
@@ -40,7 +45,7 @@ public class PlayerController {
         return "playerPackage/players-add";
 
     }
-    /////////Создание Игрока
+    /////////create player
     @PostMapping("/players/add")
     public String playerPostAdd(@RequestParam String namePlayer, @RequestParam  String nickname, @RequestParam String fullText, @RequestParam Club club, @RequestParam Country country, Model model) {
         playerServise.savePlayerToDB(namePlayer, nickname, fullText, club, country);
@@ -54,6 +59,12 @@ public class PlayerController {
         }
         playerServise.getInfoByPlayers(id,model);
         return "playerPackage/players-details";
+    }
+
+    @PostMapping("/players/{id}")
+    public String playerPostReview(@RequestParam String anons, @RequestParam String fullReview, @RequestParam Player player, Model model){
+        reviewServise.saveRiviewsPlayer(anons,fullReview,player);
+        return "redirect:/players";
     }
     //////Получение данных об Игроке для его дальнейшего редактирования
     @GetMapping("/players/{id}edit")

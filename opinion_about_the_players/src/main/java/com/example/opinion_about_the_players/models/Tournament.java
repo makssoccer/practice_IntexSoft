@@ -13,32 +13,25 @@ public class Tournament {
     private Long id;
 
 
-
+    ////connection with clubs
     @ManyToMany(mappedBy="tournament", fetch = FetchType.LAZY)
     private List<Club> club;
 
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "country_tournament",
-            joinColumns = @JoinColumn(name = "tournament_id"),
-            inverseJoinColumns = @JoinColumn(name = "country_id"))
-    private List<Country> country;
+    ////connection with country
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id")
+    private  Country country;
 
 
     private String nameTournament;
 
-    public List<Country> getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(List<Country> country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
-
-    public void setCountries(List<Country> countries) {
-        country.addAll(countries);
-    }
-
 
     public List<Club> getClub() {
         return club;
@@ -67,7 +60,7 @@ public class Tournament {
     public void Country(){
     };
 
-    public void Country(String nameTournament, List<Country> countries){
+    public void Country(String nameTournament, Country countries){
         this.nameTournament=nameTournament;
         this.country=countries;
     };

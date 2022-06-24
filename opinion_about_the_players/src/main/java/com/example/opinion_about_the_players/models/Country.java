@@ -11,10 +11,13 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    ////connection with player
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private List<Player> players;
 
-    @ManyToMany(mappedBy="country", fetch = FetchType.LAZY)
+    ////connection with tournament
+    @OneToMany(mappedBy="country", fetch = FetchType.LAZY)
     private List<Tournament> tournament;
 
     public List<Tournament> getTournament() {

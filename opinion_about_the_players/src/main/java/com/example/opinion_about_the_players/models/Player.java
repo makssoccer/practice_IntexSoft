@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
@@ -15,22 +16,33 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    ////connection with country
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Country country;
 
-
-
+    ////connection with club
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "club_id")
     private Club club;
+
+    ////connection with reviews
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
 
     private Short age;
     private String namePlayer;
     private String nickname;
     private String fullText;
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviewss(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Country getCountry() {
         return country;

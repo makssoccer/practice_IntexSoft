@@ -27,6 +27,20 @@
         <form th:action="'/players/' + ${element.id} + 'remove'" method="post">
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
+
+<!--        <div th:each="el : ${element.getReview()}">-->
+<!--            <p th:text="${el.anons}">VALUE</p>-->
+<!--            <p th:text="${el.fullReview}">VALUE</p>-->
+<!--        </div><br>-->
+
+        <form th:action="'/players/' + ${element.id}"  method="post">
+            <div name="player"
+                 th:value="${element.getId()}"></div>
+            <input type="text" name="anons" placeholder="Введите  заголовок обзора" class="form-control"><br>
+            <textarea name="fullReview" placeholder="Введите ваше мнение об игроке" class="form-control"></textarea><br>
+            <button type="submit" class="btn btn-success">Добавить Отзыв</button>
+        </form>
+
     </div>
 
 </div>

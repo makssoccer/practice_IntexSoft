@@ -11,12 +11,16 @@ public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+////connection with players
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     private List<Player> players;
 
+////connection with reviews
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    private List<Review> reviews;
 
-
-
+////connection with tournament
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tournament_club",
             joinColumns = @JoinColumn(name = "club_id"),

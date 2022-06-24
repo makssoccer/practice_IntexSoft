@@ -21,7 +21,7 @@ public class TournamentServise {
         Iterable<Tournament> tournaments = tournamentRepository.findAll();
         return model.addAttribute("tournaments",tournaments);
     }
-    public  void saveTournamentToDB(String nameTournament, List<Country> countries)
+    public  void saveTournamentToDB(String nameTournament, Country countries)
     {
         if (!nameTournament.equals("")) {
             Tournament tournament =new Tournament();

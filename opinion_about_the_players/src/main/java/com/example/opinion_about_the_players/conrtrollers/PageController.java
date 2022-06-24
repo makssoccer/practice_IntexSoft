@@ -3,7 +3,6 @@ package com.example.opinion_about_the_players.conrtrollers;
 import com.example.opinion_about_the_players.models.Country;
 import com.example.opinion_about_the_players.models.Tournament;
 import com.example.opinion_about_the_players.repository.ClubRepository;
-import com.example.opinion_about_the_players.repository.TournamentRepository;
 import com.example.opinion_about_the_players.service.ClubServise;
 import com.example.opinion_about_the_players.service.CountryServise;
 import com.example.opinion_about_the_players.service.TournamentServise;
@@ -26,8 +25,6 @@ public class PageController {
     @Autowired
     private ClubServise clubServise;
     @Autowired
-    private TournamentRepository tournamentRepository;
-    @Autowired
     private TournamentServise tournamentServise;
     @Autowired
     private CountryServise countryServise;
@@ -48,15 +45,15 @@ public class PageController {
         return "clubPackage/clubs-add";
     }
     ////Добавление клуба, лиги и страну
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     @PostMapping("/clubs/add")
-    public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament, @RequestParam List<Country> country, @RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
+    public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament, @RequestParam Country country, @RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
         tournamentServise.saveTournamentToDB(nameTournament,country);
         countryServise.saveCountryToDB(nameCountry);
         clubServise.saveClubToDB(nameClub, tournament);
             return "redirect:/clubs";
     }
-//////////////Получаем информацию
+////Получаем информацию
     @GetMapping("/clubs/{id}")
     public String clubDetails(@PathVariable(value="id") long id, Model model){
         if(!clubRepository.existsById(id)){
@@ -72,7 +69,6 @@ public class PageController {
             return "redirect:/clubs";
         }
         clubServise.editClubToDB(id, nameClub, tournament);
-//        playerServise.getNamePlayersInClub(id, model);
         return "redirect:/clubs-details";
     }
 
@@ -84,6 +80,7 @@ public class PageController {
         clubServise.getInfoByClubs(id, model);
         return "clubPackage/clubs-edit";
     }
+
     @PostMapping("/clubs/{id}edit")
     public String clubPostUbdate(@PathVariable(value = "id") long id, @RequestParam String nameClub, @RequestParam List<Tournament> tournament, Model model){
         clubServise.editClubToDB(id, nameClub,tournament);
