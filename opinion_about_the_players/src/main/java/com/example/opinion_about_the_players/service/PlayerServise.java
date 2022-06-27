@@ -23,6 +23,7 @@ public class PlayerServise {
         return model.addAttribute("players",players);
     };
 
+
     public  void savePlayerToDB(String namePlayer, String nickname, String fullText, Club club, Country country)
     {
         Player player =new Player();

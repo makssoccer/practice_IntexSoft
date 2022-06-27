@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,6 +17,10 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @OneToMany(mappedBy = "usr", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
     @Column(name = "username")
     private String username;
     @Column(name = "email")
@@ -30,6 +35,7 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn (name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

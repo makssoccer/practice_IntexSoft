@@ -15,10 +15,13 @@ public class Review {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    ////connection with club
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "club_id")
-    private Club club;
+    @JoinColumn(name = "user_id")
+    private User usr;
+
+    ////connection with club
+
 
 
     @Column(name = "anons")
@@ -27,6 +30,13 @@ public class Review {
     @Column(name = "fullRewiew")
     private String fullRewiew;
 
+    public User getUser() {
+        return usr;
+    }
+
+    public void setUser(User user) {
+        this.usr = user;
+    }
 
     public Player getPlayer() {
         return player;
@@ -34,14 +44,6 @@ public class Review {
 
     public void setPlayer(Player player) {
         this.player = player;
-    }
-
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
     }
 
     public long getId() {

@@ -17,8 +17,6 @@ public class Club {
     private List<Player> players;
 
 ////connection with reviews
-    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
-    private List<Review> reviews;
 
 ////connection with tournament
     @ManyToMany(fetch = FetchType.LAZY)

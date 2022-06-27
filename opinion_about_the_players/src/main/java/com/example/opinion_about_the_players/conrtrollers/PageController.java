@@ -38,6 +38,7 @@ public class PageController {
         return "clubPackage/clubs";
     }
 //////получаем все турниры
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/clubs/add")
     public String clubAdd( Model model){
         tournamentServise.getTournaments(model);
@@ -45,7 +46,7 @@ public class PageController {
         return "clubPackage/clubs-add";
     }
     ////Добавление клуба, лиги и страну
-
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/clubs/add")
     public String clubPostAdd(@RequestParam String nameClub, @RequestParam List<Tournament> tournament, @RequestParam Country country, @RequestParam String nameCountry, @RequestParam String nameTournament, Model model) {
         tournamentServise.saveTournamentToDB(nameTournament,country);
@@ -71,7 +72,7 @@ public class PageController {
         clubServise.editClubToDB(id, nameClub, tournament);
         return "redirect:/clubs-details";
     }
-
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/clubs/{id}edit")
     public String clubEdit(@PathVariable(value="id") long id,Model model){
         if(!clubRepository.existsById(id)){
@@ -80,12 +81,13 @@ public class PageController {
         clubServise.getInfoByClubs(id, model);
         return "clubPackage/clubs-edit";
     }
-
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/clubs/{id}edit")
     public String clubPostUbdate(@PathVariable(value = "id") long id, @RequestParam String nameClub, @RequestParam List<Tournament> tournament, Model model){
         clubServise.editClubToDB(id, nameClub,tournament);
         return "redirect:/clubs";
     }
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/clubs/{id}remove")
     public String clubPostDelete(@PathVariable(value="id") long id,Model model) {
         clubServise.deleteClubOnDB(id);

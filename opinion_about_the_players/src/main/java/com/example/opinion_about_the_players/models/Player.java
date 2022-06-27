@@ -85,14 +85,6 @@ public class Player {
         this.nickname = nickname;
     }
 
-    /*public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
-    }*/
-
     public String getFullText() {
         return fullText;
     }
