@@ -27,7 +27,7 @@ public class Player {
     private Club club;
 
     ////connection with reviews
-    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
     private List<Review> reviews;
 
 

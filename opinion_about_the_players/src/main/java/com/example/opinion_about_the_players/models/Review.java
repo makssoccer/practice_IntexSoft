@@ -11,7 +11,7 @@ public class Review {
     private long id;
 
     ////connection with player
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player_id")
     private Player player;
 

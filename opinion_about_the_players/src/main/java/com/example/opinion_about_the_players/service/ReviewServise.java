@@ -19,6 +19,10 @@ public class ReviewServise {
         Iterable<Review> reviews= reviewRepository.findAll();
         return model.addAttribute("reviews",reviews);
     }
+    public Model getPlayerReviews(long id,Model model){
+        Iterable<Review> reviews= reviewRepository.getByNameWithPlayer(id);
+        return model.addAttribute("reviews",reviews);
+    }
 
     public void saveRiviewsPlayer(String anons, String fullReviews, long id ) {
         Review review = new Review();

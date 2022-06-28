@@ -34,8 +34,8 @@
             <button class="btn btn-warning" type="submit">Удалить</button><br><br>
 
             <div class="container-sm"
-                 th:each="el : ${reviews}">
-                <h3 name="jir" th:text="${el.getAnons}">VALUE</h3>
+                 th:each="el : ${element.getReviews()}">
+                <h3 name="jir" th:text="${el.getAnons()}">VALUE</h3>
                 <p th:text="${el.getFullRewiew()}">VALUE</p>
             </div><br>
         </form>
